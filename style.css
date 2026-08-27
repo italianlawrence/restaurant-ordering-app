@@ -78,6 +78,7 @@ body {
 .plus-button:hover {
     background-color: rgb(76, 165, 194);
     color: whitesmoke;
+    cursor: crosshair;
 }
 
 .button-clicked {

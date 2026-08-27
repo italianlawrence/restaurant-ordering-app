@@ -5,6 +5,7 @@ const menuArray = [
         id: 0,
         price: 14,
         emoji: "🍕",
+        qty: 0
     },
     {
         name: "Hamburger",
@@ -12,6 +13,7 @@ const menuArray = [
         price: 12,
         emoji: "🍔",
         id: 1,
+        qty: 0
     }, 
         {
         name: "Beer",
@@ -19,12 +21,28 @@ const menuArray = [
         price: 12,
         emoji: "🍺",
         id: 2,
+        qty: 0
     }
 ]
-
-
-
 const orderContainer = document.getElementById('order-container')
+
+
+document.addEventListener('click', function(e) {
+    if(e.target.dataset.btn)
+        handleBtnClick(e.target.dataset.btn)
+})
+
+
+function handleBtnClick(btnId) {
+    const foodObj = menuArray.filter(function(food) {
+        return food.id === Number(btnId) 
+    })[0]
+
+    foodObj.qty++;
+    renderTotal(menuArray)
+}
+
+
 
 
 function returnFoodList(menu) {
@@ -45,7 +63,8 @@ function returnFoodList(menu) {
                         </div>
                     </div>            
             </div>
-        
+
+            
         
         `
     }).join('')
@@ -53,6 +72,18 @@ function returnFoodList(menu) {
 
 function renderFood(foodsList) {
     document.getElementById('food-universal-container').innerHTML = foodsList
+}
+
+function renderTotal(foodsList) {
+    foodsList.forEach(function(food) {
+        orderContainer.innerHTML = `
+
+            <div class = 'food-total'>
+                a ${food.qty} 
+        
+        
+        `
+    })
 }
 
 renderFood(returnFoodList(menuArray))
