@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+.bannerContainer {
+    padding: 1px;
+    background-image: url('images/pizza.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 200px;
+    color: whitesmoke;
+}
+
