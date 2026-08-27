@@ -29,11 +29,16 @@ function returnFoodList(menu) {
             <div class = 'food-container'>
                 <div class = 'emoji'> ${food.emoji} </div>
                     <div class = 'food-container-info'>
-                        <p class = 'food-title'> ${food.name}</p>
-                        <p class = 'ingredients'> ${food.ingredients.join(', ')} </p>
-                        <p class = 'food-price'> ${food.price} </p>
-                            
-                        <button type = 'button' class = 'plus-button'> + </button>
+
+                        <div class = 'food-info'>
+                            <p class = 'food-title'> ${food.name}</p>
+                            <p class = 'ingredients'> ${food.ingredients.join(', ')} </p>
+                            <p class = 'food-price'> ${food.price}€ </p>
+                        </div>
+
+                        <div class = 'button-container'>    
+                            <button type = 'button' class = 'plus-button'> + </button>
+                        </div>
                     </div>            
             </div>
         

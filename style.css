@@ -2,6 +2,10 @@ body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .bannerContainer {
@@ -26,3 +30,52 @@ body {
     height: 50%;
 }
 
+#food-universal-container {
+    width: 500px;
+}
+
+.food-container {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid grey;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.food-container-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+}
+
+
+.emoji {
+    font-size: 70px;
+}
+
+.food-title {
+    font-weight: bold;
+}
+
+.ingredients {
+    font-style: italic;
+
+}
+
+.food-price {
+    font-weight: bold;
+}
+
+.plus-button {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
+.plus-button:hover {
+    background-color: rgb(76, 165, 194);
+    color: whitesmoke;
+}
