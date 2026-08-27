@@ -21,3 +21,29 @@ const menuArray = [
         id: 2
     }
 ]
+
+
+function returnFoodList(menu) {
+   return menu.map(function(food) {
+        return `
+            <div class = 'food-container'>
+                <div class = 'emoji'> ${food.emoji} </div>
+                    <div class = 'food-container-info'>
+                        <p class = 'food-title'> ${food.name}</p>
+                        <p class = 'ingredients'> ${food.ingredients.join(', ')} </p>
+                        <p class = 'food-price'> ${food.price} </p>
+                            
+                        <button type = 'button' class = 'plus-button'> + </button>
+                    </div>            
+            </div>
+        
+        
+        `
+    }).join('')
+}
+
+function renderFood(foodsList) {
+    document.getElementById('food-universal-container').innerHTML = foodsList
+}
+
+renderFood(returnFoodList(menuArray))
