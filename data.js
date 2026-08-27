@@ -4,23 +4,27 @@ const menuArray = [
         ingredients: ["pepperoni", "mushrom", "mozarella"],
         id: 0,
         price: 14,
-        emoji: "🍕"
+        emoji: "🍕",
     },
     {
         name: "Hamburger",
         ingredients: ["beef", "cheese", "lettuce"],
         price: 12,
         emoji: "🍔",
-        id: 1
+        id: 1,
     }, 
         {
         name: "Beer",
         ingredients: ["grain, hops, yeast, water"],
         price: 12,
         emoji: "🍺",
-        id: 2
+        id: 2,
     }
 ]
+
+
+
+const orderContainer = document.getElementById('order-container')
 
 
 function returnFoodList(menu) {
@@ -37,7 +41,7 @@ function returnFoodList(menu) {
                         </div>
 
                         <div class = 'button-container'>    
-                            <button type = 'button' class = 'plus-button'> + </button>
+                            <button type = 'button' class = 'plus-button' data-btn = ${food.id}> + </button>
                         </div>
                     </div>            
             </div>
