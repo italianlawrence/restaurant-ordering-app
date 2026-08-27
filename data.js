@@ -46,7 +46,7 @@ function handleBtnClick(btnId) {
 
 
 function returnFoodList(menu) {
-   return menu.map(function(food) {
+  return menu.map(function(food) {
         return `
             <div class = 'food-container'>
                 <div class = 'emoji'> ${food.emoji} </div>
@@ -67,7 +67,8 @@ function returnFoodList(menu) {
             
         
         `
-    }).join('')
+    }).join('') 
+
 }
 
 function renderFood(foodsList) {
@@ -75,15 +76,7 @@ function renderFood(foodsList) {
 }
 
 function renderTotal(foodsList) {
-    foodsList.forEach(function(food) {
-        orderContainer.innerHTML = `
-
-            <div class = 'food-total'>
-                a ${food.qty} 
-        
-        
-        `
-    })
+    
 }
 
 renderFood(returnFoodList(menuArray))
