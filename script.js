@@ -1,0 +1,166 @@
+import { menuArray } from "./data.js"
+
+const orderContainer = document.getElementById('order-container')
+const orderBtnContainer = document.getElementById('order-btn-container')
+const btnPay = document.getElementById('btn-pay')
+const formData = document.getElementById('form-data')
+let orderCompleted = false 
+
+formData.addEventListener('submit', function(e) {
+    e.preventDefault()
+
+    formData.classList.toggle('hidden')
+    document.querySelector('.overlay').classList.toggle('hidden')
+
+    const btn = document.querySelector('.btn-order')
+    orderBtnContainer.removeChild(btn)
+
+    const successfullPayment = document.createElement('div')
+    successfullPayment.textContent = `Thanks ${document.getElementById('name').value}! Your order is on its way!`
+    successfullPayment.classList.add('successfull')
+    orderBtnContainer.appendChild(successfullPayment)
+
+    orderCompleted = true 
+})
+
+
+let selectedFoods = []
+
+
+document.addEventListener('click', function(e) {
+
+    if(orderCompleted)
+        return 
+
+    else {
+        if(e.target.dataset.btn)
+            handleBtnClick(e.target.dataset.btn)
+        else if(e.target.dataset.remove)
+            handleRemoveClick(e.target.dataset.remove)
+    }
+})
+
+
+function handleBtnClick(btnId) {
+    const foodObj = menuArray.filter(function(food) {
+        return food.id === Number(btnId) 
+    })[0]
+
+    let totalPrice = 0
+
+    if(selectedFoods.includes(foodObj)) {
+        foodObj.qty++
+
+    }
+    else {
+        foodObj.qty++
+        totalPrice = foodObj.price
+        selectedFoods.push(foodObj)
+    }
+
+    renderSelected()
+}
+
+function handleRemoveClick(removeId) {
+    const foodObj = menuArray.filter(function(food) {
+        return food.id === Number(removeId)
+    })[0]
+
+    foodObj.qty = 0
+
+    selectedFoods = selectedFoods.filter(function(food) {
+        return foodObj != food 
+    })
+
+    renderSelected()
+}
+
+
+function returnFoodList(menu) {
+  return menu.map(function(food) {
+
+       
+
+        return `
+            <div class = 'food-container'>
+                <div class = 'emoji'> ${food.emoji} </div>
+                    <div class = 'food-container-info'>
+
+                        <div class = 'food-info'>
+                            <p class = 'food-title'> ${food.name}</p>
+                            <p class = 'ingredients'> ${food.ingredients.join(', ')} </p>
+                            <p class = 'food-price'> ${food.price}€ </p>
+                        </div>
+
+                        <div class = 'button-container'>    
+                            <button type = 'button' class = 'plus-button' data-btn = ${food.id}> + </button>
+                        </div>
+                    </div>            
+            </div>
+        `
+    }).join('') 
+
+}
+
+function renderFood(foodsList) {
+    document.getElementById('food-universal-container').innerHTML = foodsList
+}
+
+function renderSelected() {
+    let finalString = ''
+
+     let totalPrice = 0
+
+        for(let food of selectedFoods) 
+            totalPrice += food.price * food.qty
+        
+
+    for(let food of selectedFoods) {
+        finalString += `
+                            <div class = 'food-info-container'>
+
+                                <div>
+                                    <span class = 'food-info-title'> ${food.name}</span> 
+                                    <span class = 'food-info-remove' data-remove = '${food.id}'> Remove </span>                               
+                                </div>
+                            
+                                ${food.price * food.qty}€
+                            
+                            </div>
+                        `
+    }
+
+    orderContainer.innerHTML = finalString + `<div class = "totalPrice"> 
+                                                <span class = 'total-price-label'> 
+                                                    Total price: &nbsp; 
+                                                </span> ${totalPrice}€
+                                              </div>
+                                              `
+
+    
+    const btn = document.querySelector('.btn-order')
+
+  if(selectedFoods.length > 0) {
+
+    if(!btn) {
+        const btn = document.createElement('button')
+        btn.textContent = 'Order now'
+        btn.classList.add('btn-order')
+
+        btn.addEventListener('click', function(e) {
+            document.querySelector('.form-data').classList.toggle('hidden')
+            document.querySelector('.overlay').classList.toggle('hidden')
+        })
+
+        orderBtnContainer.appendChild(btn)
+    }
+
+} else {
+
+    if(btn) {
+        orderBtnContainer.removeChild(btn)
+    }
+}
+}
+
+renderFood(returnFoodList(menuArray))

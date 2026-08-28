@@ -94,6 +94,7 @@ body {
 .food-info-container {
     display: flex;
     justify-content: space-between;
+    margin-top: 30px;
 }
 
 .food-info-title {
@@ -124,7 +125,6 @@ body {
     font-weight: bold;
     width: 500px;
     padding: 15px;
-    margin-top: 15px;
     border-radius: 10px;
     border: none;
     box-shadow: 1px 2px gray;
@@ -168,3 +168,11 @@ body {
     display: none;
 }
 
+.successfull {
+    padding: 20px;
+    background-color: #ECFDF5;
+}
+
+.total-price-label {
+    padding: 50px;
+}
